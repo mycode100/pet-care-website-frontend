@@ -16,7 +16,7 @@ export default function Signin() {
       e.preventDefault();
 
       console.log(fname, lname, email, password);
-      fetch("http://localhost:5000/register", {
+      fetch("https://pet-care-website-backend-check.onrender.com/register", {
         method: "POST",
         crossDomain: true,
         headers: {
