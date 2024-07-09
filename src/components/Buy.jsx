@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import emailjs from 'emailjs-com';
+import Swal from 'sweetalert2'; // Import SweetAlert2
 import "../assets/buy.css";
 
 const ContactMe = () => {
@@ -13,6 +14,14 @@ const ContactMe = () => {
       .then((result) => {
           console.log(result.text);
           setShowPopup(true);
+          // Use SweetAlert2 to show a custom alert
+          Swal.fire({
+            title: 'Success!',
+            text: 'Owner has received your message; we will contact you soon. Have a good day!',
+            icon: 'success',
+            confirmButtonColor: '#007bff',
+            confirmButtonText: 'Close'
+          });
       }, (error) => {
           console.log(error.text);
           alert("Failed to send message. Please try again.");
@@ -39,12 +48,12 @@ const ContactMe = () => {
         <input type="submit" value="Submit" />
       </form>
 
-      {showPopup && (
+      {/* {showPopup && (
         <div className="popup">
-          <p>Owner has received your message; we will contact you soon; Have a Good day!!!!!</p>
+          <p>Owner has received your message; we will contact you soon. Have a good day!</p>
           <button onClick={() => setShowPopup(false)}>Close</button>
         </div>
-      )}
+      )} */}
 
       <div className="social-links">
         <h2>Connect with me:</h2>
