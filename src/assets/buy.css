@@ -1,11 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
- 
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     background: #8ec8ff90 !important;
     animation: fadeInBody 1s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 @keyframes fadeInBody {
@@ -26,6 +30,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     animation: fadeInContainer 1s ease;
+    text-align: justify;
 }
 
 @keyframes fadeInContainer {
@@ -68,6 +73,9 @@ p {
 form {
     margin-top: 20px;
     animation: fadeInForm 1s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 @keyframes fadeInForm {
@@ -86,17 +94,18 @@ label {
     font-weight: 700;
 }
 
-input[type="text"], input[type="email"], textarea, input[type="date"] {
+input[type="text"], input[type="email"], input[type="tel"], textarea, input[type="number"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
+    background-color: #f9f9f9;
 }
 
 textarea {
-    height: 150px;
+    height: 120px;
 }
 
 input[type="submit"] {
@@ -107,15 +116,45 @@ input[type="submit"] {
     cursor: pointer;
     border-radius: 4px;
     font-size: 16px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 input[type="submit"]:hover {
     background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+}
+
+.popup button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.popup button:hover {
+    background-color: #0056b3;
 }
 
 .social-links {
-    margin-top: 40px;
+    margin-top: 30px;
     text-align: center;
     animation: slideInSocialLinks 1s ease;
 }
@@ -134,18 +173,20 @@ input[type="submit"]:hover {
 .social-links h2 {
     margin-bottom: 20px;
     color: #333;
-    font-size: 20px;
+    font-size: 22px;
     animation: fadeInText 1s ease;
 }
 
 .social-links ul {
     list-style: none;
     padding: 0;
+    display: flex;
+    justify-content: center; /* Align items horizontally center */
 }
 
 .social-links ul li {
-    display: inline;
-    margin-right: 10px;
+    display: inline-block;
+    margin-right: 15px;
 }
 
 .social-links ul li:last-child {
@@ -155,16 +196,17 @@ input[type="submit"]:hover {
 .social-links ul li a {
     text-decoration: none;
     color: #333;
+    display: block; /* Ensure the whole area is clickable */
 }
 
 .social-links ul li a img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 1px solid #ccc;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .social-links ul li a img:hover {
     transform: scale(1.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }

@@ -1,26 +1,50 @@
-import React from 'react';
-import "../assets/buy.css"
-
-
+import React, { useRef, useState } from 'react';
+import emailjs from 'emailjs-com';
+import "../assets/buy.css";
 
 const ContactMe = () => {
+  const form = useRef();
+  const [showPopup, setShowPopup] = useState(false);
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_k918sc9', 'template_qx0wtk2', form.current, 'aYX9HugUw1ZT0wy6U')
+      .then((result) => {
+          console.log(result.text);
+          setShowPopup(true);
+      }, (error) => {
+          console.log(error.text);
+          alert("Failed to send message. Please try again.");
+      });
+
+    e.target.reset();
+  };
+
   return (
-    <div className="container bg-white">
+    <div className="container">
       <h1>Let's Create Something Extraordinary!</h1>
       <p>If you're ready to turn your ideas into reality, fill out the form below and let's get started!</p>
-      <form action="mailto:youremail@example.com" method="post" encType="text/plain">
+      <form ref={form} onSubmit={sendEmail}>
         <label htmlFor="name">Your Name:</label>
         <input type="text" id="name" name="name" required aria-label="Your Name" />
         <label htmlFor="email">Your Email:</label>
         <input type="email" id="email" name="email" required aria-label="Your Email" />
-        <label htmlFor="company">Company Name:</label>
-        <input type="text" id="company" name="company" aria-label="Company Name" />
-        <label htmlFor="project">Tell me about your project:</label>
-        <textarea id="project" name="project" required aria-label="Project Description"></textarea>
-        <label htmlFor="deadline">Project Deadline:</label>
-        <input type="date" id="deadline" name="deadline" aria-label="Project Deadline" />
+        <label htmlFor="phone">Your Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required aria-label="Your Phone Number" />
+        <label htmlFor="description">Description about your pet:</label>
+        <textarea id="description" name="description" required aria-label="Description about your pet"></textarea>
+        <label htmlFor="budget">Budget:</label>
+        <input type="number" id="budget" name="budget" required aria-label="Budget" />
         <input type="submit" value="Submit" />
       </form>
+
+      {showPopup && (
+        <div className="popup">
+          <p>Owner has received your message; we will contact you soon; Have a Good day!!!!!</p>
+          <button onClick={() => setShowPopup(false)}>Close</button>
+        </div>
+      )}
 
       <div className="social-links">
         <h2>Connect with me:</h2>
@@ -47,6 +71,3 @@ const ContactMe = () => {
 };
 
 export default ContactMe;
-
-
-
